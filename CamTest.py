@@ -1,16 +1,24 @@
 #All changed must be made in the pi version
+#This is a test module
 
 from goprocam import GoProCamera
 from goprocam import constants
 import time
 
+#Initialize an instance of cam
 gpCam = GoProCamera.GoPro(constants.auth)
 time.sleep(4)
+
+#Set mode to single photo
 gpCam.mode(constants.Mode.PhotoMode)
 time.sleep(2)
+
+#Take 3 photos with 10 sec interval to prevent a bird blocking the view etc.
 for i in range(3):
 	gpCam.downloadLastMedia(gpCam.take_photo())
 	time.sleep(10)
+
+#Turn off
 gpCam.power_off()
 
 
